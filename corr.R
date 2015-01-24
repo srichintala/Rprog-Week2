@@ -1,0 +1,20 @@
+corr<-function(directory,threshold=0){
+  directory<-"K:/Data-Science/specdata/"
+  setwd(directory)
+  tot_files<-dir()
+  result<-vector("numeric")
+  id=1:332
+  for(i in id)
+  {
+    buf<-read.csv(tot_files[i])
+    tot_cases<-complete.cases(buf)
+    buf1<-buf[tot_cases,]
+    if(nrow(buf1)>threshold){
+      x<-buf1[,2]
+      y<-buf1[,3]
+      result<-append(result,cor(x,y))
+    }
+  }
+  setwd("K:/Data-Science/specdata/")
+  result
+}
